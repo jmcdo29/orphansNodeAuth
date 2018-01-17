@@ -1,0 +1,13 @@
+extends ./layout/layout
+
+block content
+  h1 This is the Login Page
+  h2 Account Login
+  form(method="post" action="/users/login")
+    .form-group
+      label(for="username") Username:
+      input.form-cotrol(type="text", name="username" placeholder="Username")
+    .form-group
+      label(for="password") Password:
+      input.form-control(type="password", name="password" placeholder="Password")
+    button.but_btn-default(type="submit") Submit

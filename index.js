@@ -3,15 +3,15 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
-const flash = require('flash')
+const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
-const LocalStrategy = require('passport-local'),Strategy
+const LocalStrategy = require('passport-local').Strategy
 const mongo = require('mongodb')
 const mongoose = require('mongoose')
-const dbName = 'users'
 const uri = process.env.MONGODB_URI || 'mongodb://heroku_8hxb5clq:mvdd0rsevpa3vpke010dkqffrd@ds127883.mlab.com:27883/heroku_8hxb5clq'
-mongoose.connect(uri+'/'+dbName, {useMongoClient:true})
+mongoose.connect(uri, {useMongoClient:true})
+mongoose.Promise = global.Promise
 let db = mongoose.connection
 
 const routes = require('./routes/index')
@@ -45,12 +45,12 @@ app.use(passport.session())
 // Express Validator
 app.use(expressValidator({
   errorFormatter: (params, msg, value)=>{
-    let namespace = param.split('.')
-    , root = namespcae.shift()
+    let namespace = params.split('.')
+    , root = namespace.shift()
     , formParam = root
 
-    while(namepace.length){
-      formParam += '[' + namepace.shift() + ']'
+    while(namespace.length){
+      formParam += '[' + namespace.shift() + ']'
     }
     return {
       param: formParam,
@@ -68,6 +68,7 @@ app.use((req,res,next)=>{
   res.locals.success_msg = req.flash('success_msg')
   res.locals.error_msg = req.flash('error_msg')
   res.locals.error = req.flash('error')
+  res.locals.user = req.user || null
   next()
 })
 
