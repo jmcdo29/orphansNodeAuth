@@ -34,7 +34,7 @@
     "express-session": "^1.17.0",
     "express-validator": "^4.3.0",
     "mongodb": "^3.3.3",
-    "mongoose": "^4.13.9",
+    "mongoose": "^5.7.5",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
