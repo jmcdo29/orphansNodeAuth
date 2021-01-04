@@ -32,7 +32,7 @@
     "express": "^4.17.1",
     "express-messages": "^1.0.1",
     "express-session": "^1.17.1",
-    "express-validator": "^6.9.0",
+    "express-validator": "^6.9.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.9",
     "passport": "^0.4.1",
